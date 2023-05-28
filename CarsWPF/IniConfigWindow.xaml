@@ -1,0 +1,47 @@
+﻿<Window x:Class="CarsWPF.IniConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarsWPF"
+        mc:Ignorable="d"
+        Title="Configurar Ini" Height="350" Width="250"
+        Background="#02183f"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+    <Window.Resources>
+        <ResourceDictionary Source="ResourceDictionary.xaml"></ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="IP" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               FontFamily="Montserrat" FontSize="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+        <TextBox x:Name="txbIP" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TextBox}"></TextBox>
+
+        <Label Content="Porta" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               FontFamily="Montserrat" FontSize="20" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+        <TextBox x:Name="txbPort" Margin="10" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TextBox}"></TextBox>
+
+        <Label Content="Base de Dados" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               FontFamily="Montserrat" FontSize="20" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+        <TextBox x:Name="txbBase" Margin="10" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TextBox}"></TextBox>
+
+        <Button x:Name="btnSalvar" Content="Salvar" Margin="6" Grid.Row="7" Grid.Column="0" Style="{StaticResource ResourceKey=Buttons}" Click="btnSalvar_Click"></Button>
+        <Button x:Name="btnFechar" Content="Fechar" Margin="6" Grid.Row="7" Grid.Column="1" Style="{StaticResource ResourceKey=Buttons}" Click="btnFechar_Click"></Button>
+    </Grid>
+</Window>
