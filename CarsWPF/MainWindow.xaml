@@ -29,30 +29,15 @@
 
         <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="4,0,0,0" Height="30" Source="/Resources/sedan.png"></Image>
 
-        <DataGrid x:Name="dg"
-                  CanUserDeleteRows="False"
-                  CanUserAddRows="False"
-                  Grid.ColumnSpan="3"
-                  Grid.Column="0"
-                  Grid.Row="1"
-                  Background="#02183f"
-                  BorderThickness="0,0,0,2"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  CanUserResizeColumns="False"
-                  CanUserResizeRows="False"
-                  VerticalScrollBarVisibility="Auto"
-                  HeadersVisibility="Column"
-                  FontSize="14">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="30" Binding="{Binding Id}" Header="Id" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="5*" Binding="{Binding Name}" Header="Name" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="*" Binding="{Binding Color}" Header="Color" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="70" Binding="{Binding Price}" Header="Price" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="60" Binding="{Binding Year}" Header="Year" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="80" Binding="{Binding QtPassengers}" Header="Passengers" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <DataGrid
+            x:Name="dg"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            CanUserAddRows="False"
+            ItemsSource="{Binding listCar}"
+            SelectionMode="Extended"
+            SelectionUnit="Cell" />
 
         <Grid Width="40" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2">
             <Grid.ColumnDefinitions>
