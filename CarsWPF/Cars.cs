@@ -8,8 +8,9 @@
         public double Price { get; set; }
         public int Year { get; set; }
         public int QtPassengers { get; set; }
+        public string Brand { get; set; }
 
-        public Cars(int id, string name, string color, double price, int year, int qtPassengers)
+        public Cars(int id, string name, string color, double price, int year, int qtPassengers, string brand)
         {
             Id = id;
             Name = name;
@@ -17,6 +18,7 @@
             Price = price;
             Year = year;
             QtPassengers = qtPassengers;
+            Brand = brand;
         }
     }
 }

@@ -9,6 +9,7 @@
         Background="White"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        Language="pt-BR"
         ResizeMode="CanMinimize" Icon="/sedan.png" MouseDown="Window_MouseDown">
     <Window.Resources>
         <ResourceDictionary Source="/ResourceDictionary.xaml"></ResourceDictionary>
@@ -34,10 +35,25 @@
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="3"
+            Background="#02183f"
             CanUserAddRows="False"
             ItemsSource="{Binding listCar}"
             SelectionMode="Extended"
-            SelectionUnit="Cell" />
+            SelectionUnit="Cell"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            HeadersVisibility="Column"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="30" Binding="{Binding Id}" Header="Id" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="3*" Binding="{Binding Name}" Header="Name" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Color}" Header="Color" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Price, StringFormat=c}" Header="Price" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Year}" Header="Year" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding QtPassengers}" Header="Passengers" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Brand}" Header="Brand" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Grid Width="40" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2">
             <Grid.ColumnDefinitions>

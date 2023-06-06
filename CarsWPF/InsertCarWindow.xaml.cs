@@ -1,18 +1,6 @@
 ﻿using Npgsql;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CarsWPF
 {
@@ -23,6 +11,7 @@ namespace CarsWPF
     {
         IniFile ini = new IniFile();
         NpgsqlConnection conn = new NpgsqlConnection();
+        List<Brand> listBrands = new List<Brand>();
 
         public InsertCarWindow()
         {
@@ -33,10 +22,10 @@ namespace CarsWPF
         public void ConnectionDb()
         {
             var ip = ini.Read("ip");
-            var porta = ini.Read("porta");
+            var port = ini.Read("port");
             var db = ini.Read("base");
 
-            string con = ($"Server={ip}; Port={porta}; Database={db}; User Id=postgres; Password=pedrow2001;");
+            string con = ($"Server={ip}; Port={port}; Database={db}; User Id=postgres; Password=pedrow2001;");
             conn.ConnectionString = con;
             conn.Open();
         }
@@ -53,12 +42,34 @@ namespace CarsWPF
             string pricecar = txbPrice.Text;
             string yearcar = txbYear.Text;
             string qtpassengers = txbQtde.Text;
+            int brand = (int)cb.SelectedValue;
 
-            string sql = $"SELECT public.insertcar('{namecar}', '{colorcar}', {pricecar}, {yearcar}, {qtpassengers})";
+            string sql = $"SELECT public.insertcar('{namecar}', '{colorcar}', {pricecar}, {yearcar}, {qtpassengers}, {brand})";
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
             MessageBox.Show("Inserido com sucesso!");
             Close();
+        }
+
+        private void PopulateCB(object sender, System.EventArgs e)
+        {
+            string sql = "SELECT * FROM brands;";
+            NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            listBrands.Clear();
+
+            while (reader.Read())
+            {
+                Brand brand = new(
+                    reader.GetInt32(0),
+                    reader.GetString(1)
+                    );
+
+                listBrands.Add(brand);
+            }
+            reader.Close();
+            cb.ItemsSource = listBrands;
+            cb.Items.Refresh();
         }
     }
 }

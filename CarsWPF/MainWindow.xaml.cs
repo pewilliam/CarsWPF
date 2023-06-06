@@ -21,19 +21,8 @@ namespace CarsWPF
         public MainWindow()
         {
             InitializeComponent();
-            try
-            {
-                ConnectionDb();
-                MostrarCarros();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Verifique os parâmetros do ini!");
-                IniConfigWindow iniConfigWindow = new IniConfigWindow();
-                iniConfigWindow.ShowDialog();
-                ConnectionDb();
-                MostrarCarros();
-            }
+            ConnectionDb();
+            MostrarCarros();
         }
 
         public void ConnectionDb()
@@ -42,14 +31,14 @@ namespace CarsWPF
             if (!File.Exists(path))
             {
                 ini.Write("ip", "127.0.0.1");
-                ini.Write("port", "5432");
-                ini.Write("base", "base_mm");
+                ini.Write("port", "5433");
+                ini.Write("base", "codingbase");
             }
             var ip = ini.Read("ip");
-            var porta = ini.Read("porta");
+            var port = ini.Read("port");
             var db = ini.Read("base");
 
-            string con = ($"Server={ip}; Port={porta}; Database={db}; User Id=postgres; Password=pedrow2001;");
+            string con = ($"Server={ip}; Port={port}; Database={db}; User Id=postgres; Password=pedrow2001;");
             conn.ConnectionString = con;
             conn.Open();
         }
@@ -80,7 +69,7 @@ namespace CarsWPF
         private void MostrarCarros()
         {
             //string sql = "SELECT p.codigo, nome, unidade, qtdefiscal AS matriz, dep.qtdefiscaldeposito, fil.qtdefiscalfilial, p.precovenda FROM produtos p\r\nLEFT JOIN (\r\nSELECT * FROM(SELECT * FROM dblink('host=127.0.0.1 dbname=base_mmdeposito user=postgres password=postzeus2011','SELECT codigo, qtdefiscal FROM produtos') db(codigo integer, qtdefiscaldeposito numeric)) deposito) dep ON dep.codigo = p.codigo\r\nLEFT JOIN (\r\nSELECT * FROM(SELECT * FROM dblink('host=127.0.0.1 dbname=base_mmfilial user=postgres password=postzeus2011','SELECT codigo, qtdefiscal FROM produtos') db(codigo integer, qtdefiscalfilial numeric)) filial) fil ON fil.codigo = p.codigo\r\n";
-            string sql = "SELECT id, name, color, price, year, qtpassengers FROM cars ORDER BY id";
+            string sql = "SELECT * FROM get_cars();";
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             listCars.Clear();
@@ -97,7 +86,8 @@ namespace CarsWPF
                     reader.GetString(2),
                     reader.GetDouble(3),
                     reader.GetInt32(4),
-                    reader.GetInt32(5)
+                    reader.GetInt32(5),
+                    reader.GetString(6)
                     );
 
                 listCars.Add(car);

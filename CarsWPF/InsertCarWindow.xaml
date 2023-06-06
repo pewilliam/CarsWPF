@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarsWPF"
         mc:Ignorable="d"
-        Title="Inserir Carro" Height="450" Width="400" MinHeight="450"
+        Title="Inserir Carro" Height="550" Width="400" MinHeight="450"
         Background="#02183f"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize">
@@ -33,24 +33,114 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Nome" Grid.Row="0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
-        <TextBox x:Name="txbName" Margin="8,0,8,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TextBox}"></TextBox>
+        <Label 
+            Content="Nome" 
+            Grid.Row="0" 
+            Grid.ColumnSpan="2" 
+            HorizontalContentAlignment="Center" 
+            VerticalContentAlignment="Center"></Label>
+        <TextBox 
+            x:Name="txbName" 
+            Margin="8,0,8,0" 
+            Grid.Row="1" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Style="{StaticResource ResourceKey=TextBox}"></TextBox>
 
-        <Label Content="Cor" Grid.Row="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
-        <TextBox x:Name="txbColor" Margin="8,0,8,0" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TextBox}"></TextBox>
+        <Label 
+            Content="Cor" 
+            Grid.Row="2" 
+            Grid.ColumnSpan="2" 
+            HorizontalContentAlignment="Center" 
+            VerticalContentAlignment="Center"></Label>
+        <TextBox 
+            x:Name="txbColor" 
+            Margin="8,0,8,0" 
+            Grid.Row="3" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Style="{StaticResource ResourceKey=TextBox}"></TextBox>
 
-        <Label Content="Preço" Grid.Row="4" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
-        <TextBox x:Name="txbPrice" Margin="8,0,8,0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TextBox}"></TextBox>
+        <Label 
+            Content="Preço" 
+            Grid.Row="4" 
+            Grid.ColumnSpan="2" 
+            HorizontalContentAlignment="Center" 
+            VerticalContentAlignment="Center"></Label>
+        <TextBox 
+            x:Name="txbPrice" 
+            Margin="8,0,8,0" 
+            Grid.Row="5" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Style="{StaticResource ResourceKey=TextBox}"></TextBox>
 
-        <Label Content="Ano" Grid.Row="6" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
-        <TextBox x:Name="txbYear" Margin="8,0,8,0" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TextBox}"></TextBox>
+        <Label 
+            Content="Ano" 
+            Grid.Row="6" 
+            Grid.ColumnSpan="2" 
+            HorizontalContentAlignment="Center" 
+            VerticalContentAlignment="Center"></Label>
+        <TextBox 
+            x:Name="txbYear" 
+            Margin="8,0,8,0" 
+            Grid.Row="7" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Style="{StaticResource ResourceKey=TextBox}"></TextBox>
 
-        <Label Content="Quantidade passageiros" Grid.Row="8" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
-        <TextBox x:Name="txbQtde" Margin="8,0,8,0" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TextBox}"></TextBox>
+        <Label 
+            Content="Quantidade passageiros" 
+            Grid.Row="8" 
+            Grid.ColumnSpan="2" 
+            HorizontalContentAlignment="Center" 
+            VerticalContentAlignment="Center"></Label>
+        <TextBox 
+            x:Name="txbQtde" 
+            Margin="8,0,8,0" 
+            Grid.Row="9" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Style="{StaticResource ResourceKey=TextBox}"></TextBox>
 
-        <Button x:Name="btnSalvar" Content="Salvar" Grid.Row="10" Grid.Column="0" Margin="12" Style="{StaticResource ResourceKey=Buttons}" Click="btnSalvar_Click"></Button>
-        <Button x:Name="btnFechar" Content="Fechar" Grid.Row="10" Grid.Column="1" Margin="12" Style="{StaticResource ResourceKey=Buttons}" Click="btnFechar_Click"></Button>
+        <ComboBox
+            x:Name="cb"
+            Grid.Row="10"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="10"
+            IsReadOnly="True"
+            Text="Marcas"
+            Foreground="White"
+            DropDownOpened="PopulateCB"
+            ItemsSource="{Binding listBrand}"
+            DisplayMemberPath="Name"
+            SelectedValuePath="Id"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            FontSize="16"
+            FontFamily="montserrat" Cursor="Hand" IsEditable="True" MaxDropDownHeight="250" UseLayoutRounding="True"
+            >
+        </ComboBox>
+
+        <Button 
+            x:Name="btnSalvar" 
+            Content="Salvar" 
+            Grid.Row="12" 
+            Grid.Column="0" 
+            Margin="12" 
+            Style="{StaticResource ResourceKey=Buttons}" 
+            Click="btnSalvar_Click"></Button>
+        <Button 
+            x:Name="btnFechar" 
+            Content="Fechar" 
+            Grid.Row="12" 
+            Grid.Column="1" 
+            Margin="12" 
+            Style="{StaticResource ResourceKey=Buttons}" 
+            Click="btnFechar_Click"></Button>
     </Grid>
 </Window>
