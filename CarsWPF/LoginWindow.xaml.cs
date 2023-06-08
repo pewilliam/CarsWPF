@@ -31,6 +31,8 @@ namespace CarsWPF
                 if(ex.ToString().ToLower().Contains("authentication"))
                 {
                     MessageBox.Show("Usuário e/ou senha incorreto(s)!");
+                    txbPassword.Focus();
+                    txbPassword.SelectAll();
                 }
                 else
                 {

@@ -35,6 +35,7 @@
             Background="#02183f"
             CanUserAddRows="False"
             ItemsSource="{Binding listCar}"
+            CellStyle="{StaticResource Body_Content_DataGrid_Centering}"
             SelectionMode="Extended"
             SelectionUnit="Cell"
             HorizontalAlignment="Stretch"

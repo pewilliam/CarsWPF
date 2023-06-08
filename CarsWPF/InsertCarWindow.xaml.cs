@@ -1,6 +1,9 @@
 ﻿using Npgsql;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CarsWPF
 {
@@ -11,7 +14,7 @@ namespace CarsWPF
     {
         IniFile ini = new IniFile();
         public NpgsqlConnection conn = new NpgsqlConnection();
-        List<Brand> listBrands = new List<Brand>();
+        readonly List<Brand> listBrands = new List<Brand>();
 
         public InsertCarWindow()
         {
@@ -28,7 +31,7 @@ namespace CarsWPF
         {
             string namecar = txbName.Text;
             string colorcar = txbColor.Text;
-            string pricecar = txbPrice.Text;
+            double pricecar = double.Parse(txbPrice.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
             string yearcar = txbYear.Text;
             string qtpassengers = txbQtde.Text;
             int brand = (int)cb.SelectedValue;
@@ -59,6 +62,42 @@ namespace CarsWPF
             reader.Close();
             cb.ItemsSource = listBrands;
             cb.Items.Refresh();
+        }
+
+        private void PreviewCharInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void PreviewNumberInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void txbPrice_LostFocus(object sender, RoutedEventArgs e)
+        {
+            double amount;
+            txbPrice.Text = (double.TryParse(txbPrice.Text, out amount)) ? amount.ToString("C") : string.Empty;
+        }
+
+        private void txbPrice_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if(txbPrice.Text != string.Empty)
+            {
+                double amount = double.Parse(txbPrice.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
+                txbPrice.Text = amount.ToString();
+                txbPrice.CaretIndex = txbPrice.Text.Length;
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+            }
         }
     }
 }

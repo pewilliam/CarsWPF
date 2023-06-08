@@ -86,7 +86,12 @@ namespace CarsWPF
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Escape)
+            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.N))
+            {
+                btnNovo_Click(sender, e);
+            }
+
+            if (e.Key == Key.Escape)
             {
                 Close();
             }
