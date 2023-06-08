@@ -75,7 +75,8 @@
             Margin="8,0,8,0" 
             Grid.Row="5" 
             Grid.Column="0" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="2"
+            Text="{Binding Path=txt,StringFormat=c}"
             Style="{StaticResource ResourceKey=TextBox}"></TextBox>
 
         <Label 

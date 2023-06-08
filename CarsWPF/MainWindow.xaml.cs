@@ -55,11 +55,7 @@ namespace CarsWPF
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             NpgsqlDataReader reader = cmd.ExecuteReader();
             listCars.Clear();
-            if (!reader.HasRows)
-            {
-                dg.Items.Refresh();
-                MessageBox.Show("Sem produtos para atualizar!");
-            }
+
             while (reader.Read())
             {
                 Cars car = new(
