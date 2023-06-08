@@ -10,24 +10,12 @@ namespace CarsWPF
     public partial class InsertCarWindow : Window
     {
         IniFile ini = new IniFile();
-        NpgsqlConnection conn = new NpgsqlConnection();
+        public NpgsqlConnection conn = new NpgsqlConnection();
         List<Brand> listBrands = new List<Brand>();
 
         public InsertCarWindow()
         {
             InitializeComponent();
-            ConnectionDb();
-        }
-
-        public void ConnectionDb()
-        {
-            var ip = ini.Read("ip");
-            var port = ini.Read("port");
-            var db = ini.Read("base");
-
-            string con = ($"Server={ip}; Port={port}; Database={db}; User Id=postgres; Password=pedrow2001;");
-            conn.ConnectionString = con;
-            conn.Open();
         }
 
         private void btnFechar_Click(object sender, RoutedEventArgs e)

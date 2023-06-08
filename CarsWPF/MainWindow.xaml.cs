@@ -1,7 +1,6 @@
 ﻿using Npgsql;
-using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,37 +13,21 @@ namespace CarsWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        IniFile ini = new IniFile();
-        NpgsqlConnection conn = new NpgsqlConnection();
+        LoginWindow loginWindow = new LoginWindow();
         List<Cars> listCars = new List<Cars>();
+        NpgsqlConnection conn = new NpgsqlConnection();
 
         public MainWindow()
         {
+            loginWindow.ShowDialog();
             InitializeComponent();
-            ConnectionDb();
+            conn = loginWindow.conn;
             MostrarCarros();
-        }
-
-        public void ConnectionDb()
-        {
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CarsWPF.ini");
-            if (!File.Exists(path))
-            {
-                ini.Write("ip", "127.0.0.1");
-                ini.Write("port", "5433");
-                ini.Write("base", "codingbase");
-            }
-            var ip = ini.Read("ip");
-            var port = ini.Read("port");
-            var db = ini.Read("base");
-
-            string con = ($"Server={ip}; Port={port}; Database={db}; User Id=postgres; Password=pedrow2001;");
-            conn.ConnectionString = con;
-            conn.Open();
         }
 
         private void btnFecha_Click(object sender, RoutedEventArgs e)
         {
+            conn.Close();
             Close();
         }
 
@@ -68,7 +51,6 @@ namespace CarsWPF
 
         private void MostrarCarros()
         {
-            //string sql = "SELECT p.codigo, nome, unidade, qtdefiscal AS matriz, dep.qtdefiscaldeposito, fil.qtdefiscalfilial, p.precovenda FROM produtos p\r\nLEFT JOIN (\r\nSELECT * FROM(SELECT * FROM dblink('host=127.0.0.1 dbname=base_mmdeposito user=postgres password=postzeus2011','SELECT codigo, qtdefiscal FROM produtos') db(codigo integer, qtdefiscaldeposito numeric)) deposito) dep ON dep.codigo = p.codigo\r\nLEFT JOIN (\r\nSELECT * FROM(SELECT * FROM dblink('host=127.0.0.1 dbname=base_mmfilial user=postgres password=postzeus2011','SELECT codigo, qtdefiscal FROM produtos') db(codigo integer, qtdefiscalfilial numeric)) filial) fil ON fil.codigo = p.codigo\r\n";
             string sql = "SELECT * FROM get_cars();";
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -100,11 +82,12 @@ namespace CarsWPF
         private void btnNovo_Click(object sender, RoutedEventArgs e)
         {
             InsertCarWindow insertCarWindow = new InsertCarWindow();
+            insertCarWindow.conn = conn;
             insertCarWindow.ShowDialog();
             MostrarCarros();
         }
 
-        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Window_KeyDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {

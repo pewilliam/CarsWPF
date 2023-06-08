@@ -21,4 +21,8 @@
     <Resource Include="sedan.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="database\" />
+  </ItemGroup>
+
 </Project>
