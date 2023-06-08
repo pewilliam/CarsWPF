@@ -8,6 +8,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Focusable" Value="False"/>
         <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -89,6 +90,7 @@
         <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="CaretBrush" Value="White"/>
         <Setter Property="FontSize" Value="20"/>
         <Style.Resources>
             <Style TargetType="{x:Type Border}">
@@ -104,6 +106,7 @@
         <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="CaretBrush" Value="White"/>
         <Setter Property="FontSize" Value="20"/>
         <Style.Resources>
             <Style TargetType="{x:Type Border}">
@@ -116,8 +119,10 @@
     <Style TargetType="{x:Type DataGridRow}">
         <Setter Property="Background" Value="#02183f"/>
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Height" Value="30"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Style.Resources>
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="White" />
             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
@@ -131,6 +136,8 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="BorderThickness" Value="0, 1, 1, 1" />
         <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="Padding" Value="2" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
@@ -141,95 +148,14 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="dgtest" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Border Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"
-                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                  Content="{TemplateBinding Content}"
-                                                  RecognizesAccessKey="True" />
-                        </Border>
-                        <Path x:Name="SortArrow"
-                                  Grid.Column="1"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Data="M 0,4 L 4,0 L 8,4 Z"
-                                  Fill="Transparent"
-                                  Stroke="Black"
-                                  StrokeThickness="1">
-                            <Path.RenderTransform>
-                                <TransformGroup>
-                                    <TranslateTransform x:Name="ArrowTransform" />
-                                    <ScaleTransform ScaleY="-1" />
-                                </TransformGroup>
-                            </Path.RenderTransform>
-                            <Path.Style>
-                                <Style TargetType="{x:Type Path}">
-                                    <Setter Property="Opacity" Value="0.5" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Path=SortDirection, RelativeSource={RelativeSource AncestorType={x:Type DataGridColumnHeader}}}" Value="Ascending">
-                                            <Setter Property="Opacity" Value="1" />
-                                            <Setter Property="Data" Value="M 0,0 L 4,4 L 8,0 Z" />
-                                            <DataTrigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].Y" From="0" To="-5" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.EnterActions>
-                                            <DataTrigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].Y" From="-5" To="0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.ExitActions>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding Path=SortDirection, RelativeSource={RelativeSource AncestorType={x:Type DataGridColumnHeader}}}" Value="Descending">
-                                            <Setter Property="Opacity" Value="1" />
-                                            <Setter Property="Data" Value="M 0,4 L 4,0 L 8,4 Z" />
-                                            <DataTrigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].Y" From="0" To="5" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.EnterActions>
-                                            <DataTrigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].Y" From="5" To="0" Duration="0:0:0.2" />
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </DataTrigger.ExitActions>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Path.Style>
-                        </Path>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <!--Labels-->
     <Style x:Name="labelCar" TargetType="Label">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontFamily" Value="Montserrat"/>
     </Style>
-
+    
+    <!--ComboBox-->
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -259,20 +185,6 @@
                   Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
                 />
         </Grid>
-        <!--<ControlTemplate.Triggers>
-            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
-                <Setter TargetName="Border" Property="Background" Value="#808080" />
-            </Trigger>
-            <Trigger Property="ToggleButton.IsChecked" Value="true">
-                <Setter TargetName="Border" Property="Background" Value="#E0E0E0" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
-                <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA" />
-                <Setter Property="Foreground" Value="#888888"/>
-                <Setter TargetName="Arrow" Property="Fill" Value="#888888" />
-            </Trigger>
-        </ControlTemplate.Triggers>-->
     </ControlTemplate>
 
     <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">

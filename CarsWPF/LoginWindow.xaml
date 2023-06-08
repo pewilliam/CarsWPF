@@ -36,7 +36,7 @@
         <Label x:Name="warningLabel" Foreground="Red" Grid.RowSpan="2" Content="" Grid.Row="2" Grid.ColumnSpan="2" Height="20" HorizontalContentAlignment="Center" FontSize="10" VerticalContentAlignment="Center" VerticalAlignment="Center"></Label>
         <PasswordBox x:Name="txbPassword" Margin="10" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=Password}"/>
 
-        <Button x:Name="btnSalvar" Focusable="False" Content="Login" Margin="6" Grid.Row="7" Grid.Column="0" Style="{StaticResource ResourceKey=Buttons}" Click="btnLogin_Click"></Button>
-        <Button x:Name="btnFechar" Focusable="False" Content="Fechar" Margin="6" Grid.Row="7" Grid.Column="1" Style="{StaticResource ResourceKey=Buttons}" Click="btnFechar_Click"></Button>
+        <Button x:Name="btnSalvar" Content="Login" Margin="6" Grid.Row="7" Grid.Column="0" Style="{StaticResource ResourceKey=Buttons}" Click="btnLogin_Click"></Button>
+        <Button x:Name="btnFechar" Content="Fechar" Margin="6" Grid.Row="7" Grid.Column="1" Style="{StaticResource ResourceKey=Buttons}" Click="btnFechar_Click"></Button>
     </Grid>
 </Window>

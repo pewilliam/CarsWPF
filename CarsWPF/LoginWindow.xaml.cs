@@ -26,9 +26,18 @@ namespace CarsWPF
                 conn.Open();
                 Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuário e/ou senha incorretos!");
+                if(ex.ToString().ToLower().Contains("authentication"))
+                {
+                    MessageBox.Show("Usuário e/ou senha incorreto(s)!");
+                }
+                else
+                {
+                    MessageBox.Show("Verifique os parâmetros do ini!");
+                    IniConfigWindow iniConfigWindow = new IniConfigWindow();
+                    iniConfigWindow.ShowDialog();
+                }
             }
         }
 
@@ -39,10 +48,14 @@ namespace CarsWPF
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            if(e.Key == System.Windows.Input.Key.Escape)
+            {
+                Close();
+            }
             warningLabel.Content = "";
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                if(txbPassword.Password == "")
+                if (txbPassword.Password == "")
                 {
                     txbPassword.Focus();
                     warningLabel.Content = "Informe uma senha!";

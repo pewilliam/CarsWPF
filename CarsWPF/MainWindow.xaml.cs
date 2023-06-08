@@ -22,6 +22,7 @@ namespace CarsWPF
             loginWindow.ShowDialog();
             InitializeComponent();
             conn = loginWindow.conn;
+            txbSearch.Focus();
             MostrarCarros();
         }
 
@@ -83,7 +84,15 @@ namespace CarsWPF
             MostrarCarros();
         }
 
-        private void Window_KeyDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Escape)
+            {
+                Close();
+            }
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {

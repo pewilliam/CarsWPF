@@ -16,6 +16,7 @@ namespace CarsWPF
         public InsertCarWindow()
         {
             InitializeComponent();
+            txbName.Focus();
         }
 
         private void btnFechar_Click(object sender, RoutedEventArgs e)

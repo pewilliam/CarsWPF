@@ -5,11 +5,16 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>resources\car.ico</ApplicationIcon>
+    <Authors>Pedro William</Authors>
+    <Company>Pedro William Coding</Company>
+    <Product>CarsWPF</Product>
+    <Description>A WPF application design to give the user control of a car database</Description>
+    <PackageIcon>car.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\sedan.png" />
-    <None Remove="sedan.png" />
+    <Content Include="resources\car.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,8 +22,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\sedan.png" />
-    <Resource Include="sedan.png" />
+    <Resource Include="resources\car.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="resources\car.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

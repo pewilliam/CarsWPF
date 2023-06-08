@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarsWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200" MinHeight="450" MinWidth="800" MaxWidth="1000" MaxHeight="600"
+        Title="CarsWPF" Height="650" Width="1080"
         Background="White"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
         Language="pt-BR"
-        ResizeMode="CanMinimize" Icon="/sedan.png">
+        ResizeMode="CanMinimize" Icon="/resources/car.png" KeyDown="Window_KeyDown" MouseDown="Window_MouseDown"
+        >
     <Window.Resources>
         <ResourceDictionary Source="/ResourceDictionary.xaml"></ResourceDictionary>
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
@@ -28,11 +27,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="4,0,0,0" Height="30" Source="/Resources/sedan.png"></Image>
-
         <DataGrid
             x:Name="dg"
-            Grid.Row="1"
+            Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3"
             Background="#02183f"
@@ -44,7 +41,8 @@
             VerticalAlignment="Stretch"
             HeadersVisibility="Column"
             AutoGenerateColumns="False"
-            >
+            FontFamily="montserrat"
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="30" Binding="{Binding Id}" Header="Id" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
                 <DataGridTextColumn Width="3*" Binding="{Binding Name}" Header="Name" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
@@ -56,20 +54,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Width="40" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="1" FontSize="10" Foreground="White" Content="X" x:Name="btnX" Style="{StaticResource ResourceKey=Buttons}" Click="btnFecha_Click"></Button>
-            <Button Grid.Column="0" FontSize="10" Foreground="White" Content="-" x:Name="btnMin" Style="{StaticResource ResourceKey=Buttons}" Click="btnMin_Click"></Button>
-
-        </Grid>
-
-        <TextBox Margin="6" Grid.Row="2" Foreground="#02183f" Grid.Column="0" Grid.ColumnSpan="1" Style="{StaticResource ResourceKey=TextBox}" TextChanged="TextBox_TextChanged"></TextBox>
-        <Button Grid.Row="2" Grid.Column="1" Margin="10" Content="Novo" x:Name="btnNovo" Style="{StaticResource ResourceKey=Buttons}" Click="btnNovo_Click"></Button>
-        <Button Grid.Row="2" Grid.Column="2" Margin="10" Content="Fechar" x:Name="btnFecha" Style="{StaticResource ResourceKey=Buttons}" Click="btnFecha_Click"></Button>
+        <TextBox x:Name="txbSearch" Margin="6" Grid.Row="2" Foreground="#02183f" Grid.Column="0" Grid.ColumnSpan="1" Style="{StaticResource ResourceKey=TextBox}" TextChanged="TextBox_TextChanged"></TextBox>
+        <Button Grid.Row="1" Grid.Column="1" Margin="10" Content="Novo" x:Name="btnNovo" Style="{StaticResource ResourceKey=Buttons}" Click="btnNovo_Click"></Button>
+        <Button Grid.Row="1" Grid.Column="2" Margin="10" Content="Fechar" x:Name="btnFecha" Style="{StaticResource ResourceKey=Buttons}" Click="btnFecha_Click"></Button>
 
     </Grid>
 </Window>
