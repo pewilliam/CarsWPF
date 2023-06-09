@@ -58,12 +58,12 @@ namespace CarsWPF
             warningLabelPass.Content = "";
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                if (txbUser.Text == "")
+                if (txbUser.Text == "" && txbPassword.Password != "")
                 {
                     txbUser.Focus();
                     warningLabelUser.Content = "Informe um usuário!";
                 }
-                else if (txbPassword.Password == "")
+                else if (txbPassword.Password == "" && txbUser.Text != "")
                 {
                     txbPassword.Focus();
                     warningLabelPass.Content = "Informe uma senha!";
