@@ -7,7 +7,7 @@
         Title="Configurar Ini" Height="450" Width="250"
         Background="#02183f"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanMinimize">
+        ResizeMode="CanMinimize" KeyDown="Window_KeyDown">
     <Window.Resources>
         <ResourceDictionary Source="ResourceDictionary.xaml"></ResourceDictionary>
     </Window.Resources>
