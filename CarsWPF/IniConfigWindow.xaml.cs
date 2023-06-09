@@ -27,7 +27,7 @@ namespace CarsWPF
             ini.Write("port", txbPort.Text);
             ini.Write("base", txbBase.Text);
 
-            MessageBox.Show("Configuração salva com sucesso!");
+            MessageBox.Show("Configuração salva com sucesso!", "Concluído");
             Close();
         }
 

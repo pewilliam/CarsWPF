@@ -39,7 +39,7 @@ namespace CarsWPF
             string sql = $"SELECT public.insertcar('{namecar}', '{colorcar}', {pricecar}, {yearcar}, {qtpassengers}, {brand})";
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
-            MessageBox.Show("Inserido com sucesso!");
+            MessageBox.Show("Inserido com sucesso!","Concluído");
             Close();
         }
 

@@ -30,13 +30,13 @@ namespace CarsWPF
             {
                 if(ex.ToString().ToLower().Contains("authentication"))
                 {
-                    MessageBox.Show("Usuário e/ou senha incorreto(s)!");
+                    MessageBox.Show("Usuário e/ou senha incorreto(s)!","Acesso negado");
                     txbPassword.Focus();
                     txbPassword.SelectAll();
                 }
                 else
                 {
-                    MessageBox.Show("Verifique os parâmetros do ini!");
+                    MessageBox.Show("Verifique os parâmetros do ini!","Acesso negado");
                     IniConfigWindow iniConfigWindow = new IniConfigWindow();
                     iniConfigWindow.ShowDialog();
                 }
