@@ -50,7 +50,7 @@
                                 <RepeatButton Command="{x:Static ScrollBar.LineDownCommand}"/>
                             </Track.IncreaseRepeatButton>
                             <Track.Thumb>
-                                <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" SnapsToDevicePixels="true">
+                                <Thumb x:Name="Thumb" Background="#032665" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" SnapsToDevicePixels="true">
                                     <Thumb.Style>
                                         <Style TargetType="{x:Type Thumb}">
                                             <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -108,13 +108,29 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="CaretBrush" Value="White"/>
         <Setter Property="FontSize" Value="20"/>
-        <Style.Resources>
-            <Style TargetType="{x:Type Border}">
-                <Setter Property="CornerRadius" Value="3" />
-            </Style>
-        </Style.Resources>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="3">
+                        <ScrollViewer x:Name="PART_ContentHost" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#6c9ed2" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#569de5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
-    
+
     <!--DataGrid-->
     <Style TargetType="{x:Type DataGridRow}">
         <Setter Property="Background" Value="#02183f"/>
@@ -230,7 +246,7 @@
                             IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
                             ClickMode="Press">
                         </ToggleButton>
-                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
+                        <ContentPresenter Name="ContentSite" Focusable="False" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
                             ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                             ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                             Margin="3,3,23,3"
@@ -267,7 +283,7 @@
                                 BorderThickness="1"
                                 BorderBrush="#888888"/>
                                 <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Continue" />
                                 </ScrollViewer>
                             </Grid>
                         </Popup>
@@ -280,16 +296,19 @@
                             <Setter Property="Foreground" Value="#888888"/>
                         </Trigger>
                         <Trigger Property="IsGrouping" Value="true">
-                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
                         </Trigger>
                         <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
                             <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0"/>
                             <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
                         </Trigger>
-                        <Trigger Property="IsEditable"  Value="true">
+                        <Trigger Property="IsEditable"  Value="True">
                             <Setter Property="IsTabStop" Value="false"/>
                             <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
                             <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="IsDropDownOpen" Value="False">
+                            <Setter Property="KeyboardNavigation.DirectionalNavigation" TargetName="DropDown" Value="Cycle" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -311,14 +330,14 @@
                     <Border Name="Border"
                               Padding="2"
                               SnapsToDevicePixels="true">
-                        <ContentPresenter />
+                        <ContentPresenter Focusable="False"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsHighlighted" Value="true">
-                            <Setter TargetName="Border" Property="Background" Value="#FF4F4F4F"/>
+                            <Setter TargetName="Border" Property="Background" Value="#2b7fa9"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="#888888"/>
+                            <Setter Property="Foreground" Value="#2b7fa9"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

@@ -117,7 +117,7 @@
             Grid.Row="10"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Margin="10"
+            Margin="8"
             Text="Marcas"
             Foreground="White"
             DropDownOpened="PopulateCB"
@@ -127,8 +127,11 @@
             VerticalContentAlignment="Center"
             HorizontalContentAlignment="Center"
             FontSize="16"
-            FontFamily="montserrat" Cursor="Hand" IsEditable="True" MaxDropDownHeight="250" UseLayoutRounding="True"
-            />
+            FontFamily="montserrat"
+            Cursor="Hand" 
+            MaxDropDownHeight="250" 
+            UseLayoutRounding="False" 
+            ScrollViewer.CanContentScroll="True" IsEditable="True" IsSynchronizedWithCurrentItem="False" IsReadOnly="True"/>
 
         <Button 
             x:Name="btnSalvar" 

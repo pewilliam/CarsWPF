@@ -84,7 +84,7 @@ namespace CarsWPF
 
         private void txbPrice_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(txbPrice.Text != string.Empty)
+            if (txbPrice.Text != string.Empty)
             {
                 double amount = double.Parse(txbPrice.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
                 txbPrice.Text = amount.ToString();
