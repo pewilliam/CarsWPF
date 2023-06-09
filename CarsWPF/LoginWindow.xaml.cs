@@ -54,13 +54,25 @@ namespace CarsWPF
             {
                 Close();
             }
-            warningLabel.Content = "";
+            warningLabelUser.Content = "";
+            warningLabelPass.Content = "";
             if (e.Key == System.Windows.Input.Key.Enter)
             {
-                if (txbPassword.Password == "")
+                if (txbUser.Text == "")
+                {
+                    txbUser.Focus();
+                    warningLabelUser.Content = "Informe um usuário!";
+                }
+                else if (txbPassword.Password == "")
                 {
                     txbPassword.Focus();
-                    warningLabel.Content = "Informe uma senha!";
+                    warningLabelPass.Content = "Informe uma senha!";
+                }
+                else if (txbUser.Text == "" && txbPassword.Password == "")
+                {
+                    txbUser.Focus();
+                    warningLabelUser.Content = "Informe um usuário!";
+                    warningLabelPass.Content = "Informe uma senha!";
                 }
                 else
                 {

@@ -29,11 +29,12 @@
 
         <Label Content="User"  Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                FontFamily="Montserrat" FontSize="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+        <Label x:Name="warningLabelUser" Foreground="Red" Grid.RowSpan="2" Content="" Grid.Row="0" Grid.ColumnSpan="2" Height="20" HorizontalContentAlignment="Center" FontSize="10" VerticalContentAlignment="Center" VerticalAlignment="Center"></Label>
         <TextBox x:Name="txbUser" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=TextBox}" CharacterCasing="Lower"></TextBox>
 
         <Label Content="Password" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                FontFamily="Montserrat" FontSize="20" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"></Label>
-        <Label x:Name="warningLabel" Foreground="Red" Grid.RowSpan="2" Content="" Grid.Row="2" Grid.ColumnSpan="2" Height="20" HorizontalContentAlignment="Center" FontSize="10" VerticalContentAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label x:Name="warningLabelPass" Foreground="Red" Grid.RowSpan="2" Content="" Grid.Row="2" Grid.ColumnSpan="2" Height="20" HorizontalContentAlignment="Center" FontSize="10" VerticalContentAlignment="Center" VerticalAlignment="Center"></Label>
         <PasswordBox x:Name="txbPassword" Margin="10" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ResourceKey=Password}"/>
 
         <Button x:Name="btnSalvar" Content="Login" Margin="6" Grid.Row="7" Grid.Column="0" Style="{StaticResource ResourceKey=Buttons}" Click="btnLogin_Click"></Button>
