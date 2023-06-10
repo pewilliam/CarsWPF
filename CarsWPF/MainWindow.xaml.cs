@@ -41,10 +41,20 @@ namespace CarsWPF
             }
             else
             {
-                var filteredList = listCars.Where(x => x.Name.ToLower().Contains(txb.Text.ToLower()));
-                dg.ItemsSource = null;
-                MostrarCarros();
-                dg.ItemsSource = filteredList;
+                if(cbSearch.SelectedIndex == 0)
+                {
+                    var filteredList = listCars.Where(x => x.Name.ToLower().Contains(txb.Text.ToLower()));
+                    dg.ItemsSource = null;
+                    MostrarCarros();
+                    dg.ItemsSource = filteredList;
+                }
+                else
+                {
+                    var filteredList = listCars.Where(x => x.Brand.ToLower().Contains(txb.Text.ToLower()));
+                    dg.ItemsSource = null;
+                    MostrarCarros();
+                    dg.ItemsSource = filteredList;
+                }
             }
         }
 
