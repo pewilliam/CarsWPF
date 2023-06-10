@@ -14,6 +14,7 @@ namespace CarsWPF
         public InsertBrandWindow()
         {
             InitializeComponent();
+            txbName.Focus();
         }
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
