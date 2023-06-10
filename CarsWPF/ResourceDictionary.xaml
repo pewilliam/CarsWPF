@@ -199,7 +199,7 @@
             <Border
                   x:Name="Border" 
                   Grid.ColumnSpan="2"
-                  CornerRadius="0"
+                  CornerRadius="4"
                   Background="#02183f"
                   BorderBrush="#FF97A0A5"
                   BorderThickness="1" />

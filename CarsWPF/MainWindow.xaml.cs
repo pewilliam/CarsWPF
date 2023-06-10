@@ -23,6 +23,7 @@ namespace CarsWPF
             InitializeComponent();
             conn = loginWindow.conn;
             txbSearch.Focus();
+            cbSearch.SelectedIndex = 0;
             MostrarCarros();
         }
 

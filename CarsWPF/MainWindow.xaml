@@ -67,12 +67,14 @@
                           FontSize="14"/>
         </ComboBox>
         <TextBox x:Name="txbSearch"
-                 Margin="6" 
+                 Margin="10" 
                  Grid.Row="2" 
                  Foreground="#02183f" 
                  Grid.Column="1" 
                  Grid.ColumnSpan="1" 
                  Style="{StaticResource ResourceKey=TextBox}" 
+                 CaretBrush="#02183f"
+                 HorizontalContentAlignment="Left"
                  TextChanged="TextBox_TextChanged"></TextBox>
         <Button x:Name="btnNovo" 
                 Grid.Row="1" 
