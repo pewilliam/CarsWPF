@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarsWPF"
         mc:Ignorable="d"
-        Title="Inserir Carro" Height="550" Width="400" MinHeight="450"
+        Title="Inserir Carro" Height="650" Width="400" MinHeight="450"
         Background="#02183f"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize" KeyDown="Window_KeyDown">
@@ -17,7 +17,8 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -39,7 +40,7 @@
         <Label 
             Content="Nome" 
             Grid.Row="0" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
             VerticalContentAlignment="Center"></Label>
         <TextBox 
@@ -47,13 +48,13 @@
             Margin="8,0,8,0"
             Grid.Row="1" 
             Grid.Column="0" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             Style="{StaticResource ResourceKey=TextBox}"></TextBox>
 
         <Label 
             Content="Cor" 
             Grid.Row="2" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
             VerticalContentAlignment="Center"></Label>
         <TextBox 
@@ -61,14 +62,14 @@
             Margin="8,0,8,0" 
             Grid.Row="3" 
             Grid.Column="0" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             Style="{StaticResource ResourceKey=TextBox}"
             PreviewTextInput="PreviewCharInput"></TextBox>
 
         <Label 
             Content="Preço" 
             Grid.Row="4" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
             VerticalContentAlignment="Center"></Label>
         <TextBox 
@@ -76,7 +77,7 @@
             Margin="8,0,8,0" 
             Grid.Row="5" 
             Grid.Column="0" 
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             Text="{Binding Path=txt,StringFormat=c}"
             Style="{StaticResource ResourceKey=TextBox}"
             LostFocus="txbPrice_LostFocus"
@@ -85,7 +86,7 @@
         <Label 
             Content="Ano" 
             Grid.Row="6" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
             VerticalContentAlignment="Center"></Label>
         <TextBox 
@@ -93,14 +94,14 @@
             Margin="8,0,8,0" 
             Grid.Row="7" 
             Grid.Column="0" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             Style="{StaticResource ResourceKey=TextBox}"
             PreviewTextInput="PreviewNumberInput"></TextBox>
 
         <Label 
             Content="Quantidade passageiros" 
             Grid.Row="8" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
             VerticalContentAlignment="Center"></Label>
         <TextBox 
@@ -108,7 +109,7 @@
             Margin="8,0,8,0" 
             Grid.Row="9" 
             Grid.Column="0" 
-            Grid.ColumnSpan="2" 
+            Grid.ColumnSpan="3" 
             Style="{StaticResource ResourceKey=TextBox}"
             PreviewTextInput="PreviewNumberInput"></TextBox>
 
@@ -117,7 +118,7 @@
             Grid.Row="10"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Margin="8"
+            Margin="8,10,8,5"
             Text="Marcas"
             Foreground="White"
             DropDownOpened="PopulateCB"
@@ -133,21 +134,94 @@
             UseLayoutRounding="False" 
             ScrollViewer.CanContentScroll="True" IsEditable="True" IsSynchronizedWithCurrentItem="False" IsReadOnly="True"/>
 
-        <Button 
-            x:Name="btnSalvar" 
-            Content="Salvar" 
-            Grid.Row="12" 
-            Grid.Column="0" 
-            Margin="12" 
-            Style="{StaticResource ResourceKey=Buttons}" 
-            Click="btnSalvar_Click"></Button>
-        <Button 
-            x:Name="btnFechar" 
-            Content="Fechar" 
-            Grid.Row="12" 
-            Grid.Column="1" 
-            Margin="12" 
-            Style="{StaticResource ResourceKey=Buttons}" 
-            Click="btnFechar_Click"></Button>
+        <Button x:Name="insertBrand"
+                Content="＋"
+                Grid.Row="10"
+                Grid.Column="2"
+                FontSize="25"
+                Margin="0, 10, 10, 5"
+                Style="{StaticResource ResourceKey=Buttons}" Click="insertBrand_Click"/>
+
+        <Grid Grid.Row="11"
+              Grid.ColumnSpan="3">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                    x:Name="btnSalvar" 
+                    Content="Salvar" 
+                    Grid.Row="12" 
+                    Grid.Column="0" 
+                    Margin="10" 
+                    Style="{StaticResource ResourceKey=Buttons}"    
+                    Click="btnSalvar_Click"/>
+            <Button 
+                    x:Name="btnFechar" 
+                    Content="Fechar" 
+                    Grid.Row="12" 
+                    Grid.Column="1" 
+                    Margin="10" 
+                    Style="{StaticResource ResourceKey=Buttons}" 
+                    Click="btnFechar_Click"/>
+        </Grid>
+        
+        <!--Warning labels-->
+        <Label x:Name="warningLabelName"
+               Foreground="Red"
+               Content="" 
+               Grid.Row="0" 
+               Grid.ColumnSpan="3" 
+               Height="20" 
+               HorizontalAlignment="Right"
+               FontSize="9" 
+               Margin="0,0,8,0"
+               VerticalAlignment="Bottom"/>
+
+        <Label x:Name="warningLabelColor"
+               Foreground="Red"
+               Content="" 
+               Grid.Row="2" 
+               Grid.ColumnSpan="3" 
+               Height="20" 
+               HorizontalAlignment="Right"
+               FontSize="9"
+               Margin="0,0,8,0"
+               VerticalAlignment="Bottom"/>
+
+        <Label x:Name="warningLabelPrice"
+               Foreground="Red"
+               Content="" 
+               Grid.Row="4" 
+               Grid.ColumnSpan="3" 
+               Height="20" 
+               HorizontalAlignment="Right"
+               FontSize="9" 
+               Margin="0,0,8,0"
+               VerticalAlignment="Bottom"/>
+
+        <Label x:Name="warningLabelYear"
+               Foreground="Red"
+               Content="" 
+               Grid.Row="6" 
+               Grid.ColumnSpan="3" 
+               Height="20" 
+               HorizontalAlignment="Right"
+               FontSize="9" 
+               Margin="0,0,8,0"
+               VerticalAlignment="Bottom"/>
+
+        <Label x:Name="warningLabelQtde"
+               Foreground="Red"
+               Content="" 
+               Grid.Row="8" 
+               Grid.ColumnSpan="3" 
+               Height="20" 
+               HorizontalAlignment="Right"
+               FontSize="9" 
+               Margin="0,0,8,0"
+               VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

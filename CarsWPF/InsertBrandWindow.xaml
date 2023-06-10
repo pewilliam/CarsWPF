@@ -5,8 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarsWPF"
         mc:Ignorable="d"
-        Title="InsertBrandWindow" Height="450" Width="800">
+        Title="Inserir Marca" Height="250" Width="350"
+        Background="#02183f"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize" KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <ResourceDictionary Source="ResourceDictionary.xaml"></ResourceDictionary>
+    </Window.Resources>
+    
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Name"
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+
+        <Label x:Name="warningLabel"
+               Content=""
+               FontSize="8"
+               Foreground="Red"
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Bottom"/>
+
+        <TextBox x:Name="txbName"
+                 Grid.Row="1"
+                 Grid.Column="0"
+                 Grid.ColumnSpan="2"
+                 Margin="10,0,10,0"
+                 Style="{StaticResource ResourceKey=TextBox}"/>
+
+        <Button x:Name="btnSalvar"
+                Content="Salvar"
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="10"
+                Style="{StaticResource Buttons}" Click="btnSalvar_Click"/>
+
+        <Button x:Name="btnFechar"
+                Content="Fechar"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="10"
+                Style="{StaticResource Buttons}" Click="btnFechar_Click"/>
     </Grid>
 </Window>

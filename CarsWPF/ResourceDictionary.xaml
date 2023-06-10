@@ -200,14 +200,14 @@
                   x:Name="Border" 
                   Grid.ColumnSpan="2"
                   CornerRadius="4"
-                  Background="#02183f"
+                  Background="#032665"
                   BorderBrush="#FF97A0A5"
                   BorderThickness="1" />
             <Border 
                   Grid.Column="0"
                   CornerRadius="0" 
                   Margin="1" 
-                  Background="#02183f" 
+                  Background="#032665" 
                   BorderBrush="#FF97A0A5"
                   BorderThickness="0,0,1,0" />
             <Path 

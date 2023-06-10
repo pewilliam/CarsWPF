@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace CarsWPF
@@ -12,7 +13,6 @@ namespace CarsWPF
     /// </summary>
     public partial class InsertCarWindow : Window
     {
-        IniFile ini = new IniFile();
         public NpgsqlConnection conn = new NpgsqlConnection();
         readonly List<Brand> listBrands = new List<Brand>();
 
@@ -34,12 +34,16 @@ namespace CarsWPF
             double pricecar = double.Parse(txbPrice.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency);
             string yearcar = txbYear.Text;
             string qtpassengers = txbQtde.Text;
-            int brand = (int)cb.SelectedValue;
+            int brand = 1;
+            if (cb.SelectedValue != null)
+            {
+                brand = (int)cb.SelectedValue;
+            }
 
             string sql = $"SELECT public.insertcar('{namecar}', '{colorcar}', {pricecar}, {yearcar}, {qtpassengers}, {brand})";
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
-            MessageBox.Show("Inserido com sucesso!","Concluído");
+            MessageBox.Show("Inserido com sucesso!", "Concluído");
             Close();
         }
 
@@ -98,6 +102,43 @@ namespace CarsWPF
             {
                 Close();
             }
+
+            warningLabelName.Content = "";
+            warningLabelColor.Content = "";
+            warningLabelPrice.Content = "";
+            warningLabelYear.Content = "";
+            warningLabelQtde.Content = "";
+
+            if (e.Key == Key.Enter)
+            {
+                if (string.IsNullOrEmpty(txbName.Text))
+                {
+                    warningLabelName.Content = "Digite um nome!";
+                }
+                if (string.IsNullOrEmpty(txbColor.Text))
+                {
+                    warningLabelColor.Content = "Digite uma cor!";
+                }
+                if (string.IsNullOrEmpty(txbPrice.Text))
+                {
+                    warningLabelPrice.Content = "Digite um preço!";
+                }
+                if (string.IsNullOrEmpty(txbYear.Text))
+                {
+                    warningLabelYear.Content = "Digite um ano!";
+                }
+                if (string.IsNullOrEmpty(txbQtde.Text))
+                {
+                    warningLabelQtde.Content = "Digite uma quantidade!";
+                }
+            }
+        }
+
+        private void insertBrand_Click(object sender, RoutedEventArgs e)
+        {
+            InsertBrandWindow insertBrandWindow = new InsertBrandWindow();
+            insertBrandWindow.conn = conn;
+            insertBrandWindow.ShowDialog();
         }
     }
 }
