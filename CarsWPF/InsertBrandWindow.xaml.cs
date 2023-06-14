@@ -19,7 +19,7 @@ namespace CarsWPF
 
         private void btnSalvar_Click(object sender, RoutedEventArgs e)
         {
-            if(txbName.Text != "")
+            if (txbName.Text != "")
             {
                 string brandName = txbName.Text;
                 string sql = $"SELECT public.insertbrand('{brandName}');";
@@ -47,7 +47,9 @@ namespace CarsWPF
             {
                 Close();
             }
+
             warningLabel.Content = "";
+
             if (e.Key == Key.Enter)
             {
                 if (txbName.Text == "")
