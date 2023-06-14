@@ -34,7 +34,7 @@
 
         <Label x:Name="warningLabel"
                Content=""
-               FontSize="8"
+               FontSize="10"
                Foreground="Red"
                Grid.Row="0"
                Grid.Column="0"

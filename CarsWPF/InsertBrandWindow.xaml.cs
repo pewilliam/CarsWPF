@@ -53,7 +53,7 @@ namespace CarsWPF
                 if (txbName.Text == "")
                 {
                     txbName.Focus();
-                    warningLabel.Content = "Informe um usuário!";
+                    warningLabel.Content = "Insira o nome da marca!";
                 }
                 else
                 {
