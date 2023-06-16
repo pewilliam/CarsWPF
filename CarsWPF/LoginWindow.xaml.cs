@@ -25,6 +25,11 @@ namespace CarsWPF
             {
                 if (ConnectionDB(txbUser.Text, txbPassword.Password))
                     Close();
+                else
+                {
+                    conn.Close();
+                    MessageBox.Show("Usuário não permitido para acessar a aplicação!");
+                }
             }
             catch (Exception ex)
             {

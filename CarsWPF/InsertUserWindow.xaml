@@ -38,6 +38,13 @@
                Grid.Row="0" 
                Grid.Column="0" 
                Grid.ColumnSpan="2"/>
+        <Label x:Name="warnginLabelUser"
+               Content=""
+               Grid.Row="0"
+               Grid.ColumnSpan="2"
+               VerticalAlignment="Bottom"
+               FontSize="8"/>
+
         <TextBox x:Name="txbUser" 
                  Margin="10" 
                  Grid.Row="1" 
@@ -54,6 +61,13 @@
                Grid.Row="2" 
                Grid.Column="0" 
                Grid.ColumnSpan="2"/>
+        <Label x:Name="warnginLabelPass"
+               Content=""
+               Grid.Row="2"
+               Grid.ColumnSpan="2"
+               VerticalAlignment="Bottom"
+               FontSize="8"/>
+        
         <PasswordBox x:Name="txbPass"
                      Margin="10" 
                      Grid.Row="3"

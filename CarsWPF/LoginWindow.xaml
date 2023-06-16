@@ -110,7 +110,7 @@
                 Click="btnNewUser_Click"
                 ToolTip="Novo Usuário">
             <Button.Background>
-                <ImageBrush ImageSource="/user.png"/>
+                <ImageBrush ImageSource="/resources/user.png"/>
             </Button.Background>
         </Button>
     </Grid>
