@@ -52,7 +52,7 @@ namespace CarsWPF
             catch (Exception)
             {
                 CheckFields();
-                MessageBox.Show("Não é possível inserir novo carro!\n Verifique o preenchimento dos dados.", "Erro");
+                MessageBox.Show("Não é possível inserir novo carro!\nVerifique o preenchimento dos dados.", "Erro");
             }
         }
 

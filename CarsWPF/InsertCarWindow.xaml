@@ -38,7 +38,7 @@
         </Grid.RowDefinitions>
 
         <Label 
-            Content="Nome" 
+            Content="Name" 
             Grid.Row="0" 
             Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
@@ -52,7 +52,7 @@
             Style="{StaticResource ResourceKey=TextBox}" TextChanged="txb_TextChanged"></TextBox>
 
         <Label 
-            Content="Cor" 
+            Content="Color" 
             Grid.Row="2" 
             Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
@@ -67,7 +67,7 @@
             PreviewTextInput="PreviewCharInput" TextChanged="txb_TextChanged"></TextBox>
 
         <Label 
-            Content="Preço" 
+            Content="Price" 
             Grid.Row="4" 
             Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
@@ -84,7 +84,7 @@
             PreviewTextInput="PreviewNumberInput" GotFocus="txbPrice_GotFocus" TextChanged="txb_TextChanged"></TextBox>
 
         <Label 
-            Content="Ano" 
+            Content="Year" 
             Grid.Row="6" 
             Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
@@ -99,7 +99,7 @@
             PreviewTextInput="PreviewNumberInput" TextChanged="txb_TextChanged"></TextBox>
 
         <Label 
-            Content="Passageiros" 
+            Content="Passengers" 
             Grid.Row="8" 
             Grid.ColumnSpan="3" 
             HorizontalContentAlignment="Center" 
@@ -119,7 +119,7 @@
             Grid.Column="0"
             Grid.ColumnSpan="2"
             Margin="8,10,8,5"
-            Text="Marcas"
+            Text="Brands"
             Foreground="White"
             DropDownOpened="PopulateCB"
             ItemsSource="{Binding listBrand}"

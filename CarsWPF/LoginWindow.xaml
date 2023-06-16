@@ -98,5 +98,20 @@
                 Grid.Column="1" 
                 Style="{StaticResource ResourceKey=Buttons}" 
                 Click="btnFechar_Click"/>
+
+        <Button x:Name="btnNewUser"
+                Margin="10" 
+                Grid.Row="0" 
+                Grid.Column="1"
+                Width="25"
+                Height="25"
+                HorizontalAlignment="Right"
+                Style="{StaticResource ResourceKey=Buttons}" 
+                Click="btnNewUser_Click"
+                ToolTip="Novo Usuário">
+            <Button.Background>
+                <ImageBrush ImageSource="/user.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
