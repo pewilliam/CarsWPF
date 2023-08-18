@@ -46,13 +46,13 @@
             FontFamily="montserrat"
             IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="30" Binding="{Binding Path=id}" Header="Id" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="3*" Binding="{Binding Path=name}" Header="Name" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="*" Binding="{Binding Path=color}" Header="Color" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="*" Binding="{Binding Path=price, StringFormat=c}" Header="Price" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="*" Binding="{Binding Path=year, TargetNullValue='-'}" Header="Year" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="*" Binding="{Binding Path=qtpassenger}" Header="Passengers" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
-                <DataGridTextColumn Width="*" Binding="{Binding Path=marca}" Header="Brand" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="30" Binding="{Binding Id}" Header="Id" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="3*" Binding="{Binding Name}" Header="Name" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Color}" Header="Color" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Price, StringFormat=c}" Header="Price" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Year, TargetNullValue='-'}" Header="Year" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding QtPassengers, TargetNullValue='-'}" Header="Passengers" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Brand}" Header="Brand" HeaderStyle="{StaticResource ResourceKey=DataGrid}" ></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
