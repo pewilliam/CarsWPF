@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace CarsWPF
@@ -14,7 +15,7 @@ namespace CarsWPF
     public partial class MainWindow : Window
     {
         LoginWindow loginWindow = new LoginWindow();
-        List<Cars> listCars = new List<Cars>();
+        private List<DataRowView> originalList;
         NpgsqlConnection conn = new NpgsqlConnection();
 
         public MainWindow()
@@ -36,26 +37,27 @@ namespace CarsWPF
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var txb = sender as TextBox;
-            if (txb.Text == null)
+
+            if (string.IsNullOrWhiteSpace(txb.Text))
             {
-                MostrarCarros();
+                dg.ItemsSource = originalList; // Restaura a lista original
             }
             else
             {
-                if(cbSearch.SelectedIndex == 0)
+                List<DataRowView> filteredList = null;
+
+                if (cbSearch.SelectedIndex == 0)
                 {
-                    var filteredList = listCars.Where(x => x.Name.ToLower().Contains(txb.Text.ToLower()));
-                    dg.ItemsSource = null;
-                    MostrarCarros();
-                    dg.ItemsSource = filteredList;
+                    filteredList = originalList.Where(row =>
+                        row["Name"].ToString().ToLower().Contains(txb.Text.ToLower())).ToList();
                 }
                 else
                 {
-                    var filteredList = listCars.Where(x => x.Brand.ToLower().Contains(txb.Text.ToLower()));
-                    dg.ItemsSource = null;
-                    MostrarCarros();
-                    dg.ItemsSource = filteredList;
+                    filteredList = originalList.Where(row =>
+                        row["Brand"].ToString().ToLower().Contains(txb.Text.ToLower())).ToList();
                 }
+
+                dg.ItemsSource = filteredList;
             }
         }
 
@@ -66,25 +68,15 @@ namespace CarsWPF
             string sql = "SELECT * FROM get_cars();";
             NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
             NpgsqlDataReader reader = cmd.ExecuteReader();
-            listCars.Clear();
 
-            while (reader.Read())
-            {
-                Cars car = new(
-                    reader.GetInt32(0),
-                    reader.GetString(1),
-                    reader.GetString(2),
-                    reader.GetDouble(3),
-                    reader.GetInt32(4),
-                    reader.GetInt32(5),
-                    reader.GetString(6)
-                    );
+            DataTable dataTable = new DataTable();
+            dataTable.Load(reader);
 
-                listCars.Add(car);
-            }
             reader.Close();
-            dg.ItemsSource = listCars;
-            dg.Items.Refresh();
+
+            originalList = dataTable.DefaultView.OfType<DataRowView>().ToList(); // Armazena a lista original
+
+            dg.ItemsSource = dataTable.DefaultView;
         }
 
         private void btnNovo_Click(object sender, RoutedEventArgs e)
